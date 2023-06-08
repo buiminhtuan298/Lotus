@@ -5,6 +5,7 @@ import { TWEEN } from "https://unpkg.com/three@0.139.0/examples/jsm/libs/tween.m
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 import { Sky } from "three/addons/objects/Sky.js";
 import { Water } from "three/addons/objects/Water.js";
+import loadingImage from "./assets/logo.png";
 
 function App() {
   const sceneRef = useRef(null);
@@ -77,19 +78,24 @@ function App() {
 
     const loaddingManager = new THREE.LoadingManager();
 
-    const progressBar = document.getElementById("progress-bar");
+    const loadingProgress = document.querySelector(".loading-image");
+    const loading = document.querySelector(".loading");
     loaddingManager.onProgress = function (url, loaded, total) {
-      progressBar.value = (loaded / total) * 100;
-      if (progressBar.value === 100) {
-        animationRotation();
-      }
-    };
+      const value = (loaded / total) * 100;
+      loadingProgress.style.transform = `translateY(${-value}%)`;
 
-    const progressBarContainer = document.querySelector(
-      ".progress-bar-container"
-    );
-    loaddingManager.onLoad = function () {
-      progressBarContainer.style.display = "none";
+      if (value === 100) {
+        new Promise((resole) => {
+          setTimeout(() => {
+            loading.style.display = "none";
+            setTimeout(() => {
+              resole(true);
+            }, 100);
+          }, 500);
+        }).then(() => {
+          animationRotation();
+        });
+      }
     };
 
     const gltfLoader = new GLTFLoader(loaddingManager);
@@ -396,8 +402,11 @@ function App() {
         </div>
       </main>
 
-      <div className="progress-bar-container">
-        <progress id="progress-bar" value="0" max="100"></progress>
+      <div className="loading">
+        <div className="content">
+          <div className="loading-image"></div>
+          <img src={loadingImage} alt="image-loading" />
+        </div>
       </div>
     </>
   );
