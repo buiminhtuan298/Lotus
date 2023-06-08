@@ -1,0 +1,177 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+}
+.progress-bar-container {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  background-color: rgb(0, 0, 0);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+#progress-bar {
+  width: 30%;
+  margin-top: 0.5%;
+  height: 2%;
+}
+
+@keyframes blink {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.8;
+  }
+}
+
+.container {
+  margin: 0 auto;
+  position: fixed;
+  bottom: 8rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.container .switcher-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container .switcher-wrapper .mode {
+  padding: 0 10px;
+  font-weight: 800;
+}
+
+.container .switcher-wrapper .mode.light {
+  color: #c7cedb;
+}
+
+.container .switcher-wrapper .mode.dark {
+  color: #333;
+}
+
+#switcher {
+  width: 60px;
+  height: 30px;
+  position: relative;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  padding: 0 6px;
+  background: #86afff;
+  transition: all 0.2s linear;
+}
+
+#switcher .star {
+  position: absolute;
+  background: #fff;
+  clip-path: circle(45% at 60% 60%);
+  transition: all 0.2s linear;
+}
+
+#switcher .star.star1 {
+  width: 6px;
+  height: 6px;
+  top: 6px;
+  left: 70%;
+}
+
+#switcher .star.star2 {
+  width: 4px;
+  height: 4px;
+  top: 18px;
+  left: 65%;
+}
+
+#switcher .star.star3 {
+  width: 3px;
+  height: 3px;
+  top: 7px;
+  left: 52%;
+  opacity: 0;
+}
+
+#switcher .round-btn {
+  width: 20px;
+  height: 20px;
+  clip-path: circle(50% at 50% 50%);
+  background: #ffffff;
+  cursor: pointer;
+  border-radius: 50%;
+  border: 1px solid transparent;
+  transition: all 0.2s linear;
+}
+
+#switcher .round-btn .moon-mode {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #00134c;
+  position: absolute;
+  left: -4px;
+  top: 0;
+  opacity: 0;
+  transition: all 0.1s linear;
+}
+
+main.night .container .mode.light {
+  color: #333;
+}
+
+main.night .container .mode.dark {
+  color: #c7cedb;
+}
+
+main.night #switcher {
+  background: #00134c;
+}
+
+main.night #switcher .star {
+  clip-path: polygon(
+    50% 0%,
+    61% 35%,
+    98% 35%,
+    68% 57%,
+    79% 91%,
+    50% 70%,
+    21% 91%,
+    32% 57%,
+    2% 35%,
+    39% 35%
+  );
+}
+
+main.night #switcher .star.star1 {
+  opacity: 0.6;
+  left: 16%;
+  animation: blink 1.8s linear infinite;
+}
+
+main.night #switcher .star.star2 {
+  left: 36%;
+  animation: blink 2.4s linear infinite;
+}
+
+main.night #switcher .star.star3 {
+  animation: blink 1.2s linear infinite;
+}
+
+main.night #switcher .round-btn {
+  transform: translateX(30px) rotate(20deg);
+  border-color: #00134c;
+}
+
+main.night #switcher .round-btn .moon-mode {
+  opacity: 1;
+}
