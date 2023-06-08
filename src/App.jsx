@@ -133,10 +133,10 @@ function App() {
       model.scale.set(10, 10, 10);
 
       const radiusInner = 2;
-      const radiusOuter = 50;
+      const radiusOuter = 10;
       const minDistance = 1;
 
-      for (let i = 0; i < 2000; i++) {
+      for (let i = 0; i < 200; i++) {
         const clone = model.clone();
 
         const randomAngle = Math.random() * Math.PI * 2;
@@ -171,8 +171,8 @@ function App() {
       distortionScale: 3.7,
     });
 
-    const spotLight = new THREE.SpotLight(0xffffff, 0.7);
-    spotLight.position.set(0, 250, 0);
+    const spotLight = new THREE.SpotLight(0xffffff);
+    spotLight.position.set(0, 100, 0);
     scene.add(spotLight);
 
     water.rotation.x = -Math.PI / 2;
@@ -231,7 +231,7 @@ function App() {
           clearInterval(timer2);
 
           // Vị trí mới của camera
-          var endPosition1 = new THREE.Vector3(0, 250, 0);
+          var endPosition1 = new THREE.Vector3(0, 100, 0);
 
           // Thời gian di chuyển (tính bằng giây)
           var duration1 = 3;
