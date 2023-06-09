@@ -35,7 +35,7 @@ function App() {
     const control = new OrbitControls(camera, renderer.domElement);
     control.enableDamping = true;
     control.minDistance = 5;
-    control.maxDistance = 10000;
+    control.maxDistance = 100;
     control.enablePan = false;
     control.maxPolarAngle = Math.PI / 2 - 0.05;
     control.update();
@@ -156,7 +156,7 @@ function App() {
       const stone = gltf.scene;
       stone.scale.set(50, 30, 50);
 
-      const radiusInner = 30;
+      const radiusInner = 20;
       const radiusOuter = 50;
       const minDistance = 1;
 
