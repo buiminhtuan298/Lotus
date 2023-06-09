@@ -154,10 +154,10 @@ function App() {
 
     gltfLoader.load("/models/mountain.glb", (gltf) => {
       const stone = gltf.scene;
-      stone.scale.set(50, 30, 50);
+      stone.scale.set(40, 25, 40);
 
-      const radiusInner = 20;
-      const radiusOuter = 50;
+      const radiusInner = 25;
+      const radiusOuter = 60;
       const minDistance = 1;
 
       for (let i = 0; i < 10; i++) {
