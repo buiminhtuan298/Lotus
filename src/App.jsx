@@ -35,7 +35,7 @@ function App() {
     const control = new OrbitControls(camera, renderer.domElement);
     control.enableDamping = true;
     control.minDistance = 5;
-    control.maxDistance = 100;
+    control.maxDistance = 10000;
     control.enablePan = false;
     control.maxPolarAngle = Math.PI / 2 - 0.05;
     control.update();
@@ -133,11 +133,35 @@ function App() {
       model.scale.set(10, 10, 10);
 
       const radiusInner = 2;
-      const radiusOuter = 10;
+      const radiusOuter = 3;
       const minDistance = 1;
 
-      for (let i = 0; i < 200; i++) {
+      for (let i = 0; i < 50; i++) {
         const clone = model.clone();
+
+        const randomAngle = Math.random() * Math.PI * 2;
+        const randomRadius =
+          Math.random() * (radiusOuter - radiusInner) + radiusInner;
+        const distance = minDistance + clone.scale.x * 2;
+
+        const x = Math.cos(randomAngle) * randomRadius * distance;
+        const z = Math.sin(randomAngle) * randomRadius * distance;
+
+        clone.position.set(x, 0, z);
+        scene.add(clone);
+      }
+    });
+
+    gltfLoader.load("/models/mountain.glb", (gltf) => {
+      const stone = gltf.scene;
+      stone.scale.set(50, 30, 50);
+
+      const radiusInner = 30;
+      const radiusOuter = 50;
+      const minDistance = 1;
+
+      for (let i = 0; i < 10; i++) {
+        const clone = stone.clone();
 
         const randomAngle = Math.random() * Math.PI * 2;
         const randomRadius =
